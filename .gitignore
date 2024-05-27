@@ -1,0 +1,6 @@
+backup/
+lib/
+timefill.sh
+timeprune
+timeprune.dbg
+timeprune.in

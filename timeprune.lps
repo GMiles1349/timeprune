@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Release"/>
+    <Units>
+      <Unit>
+        <Filename Value="timeprune.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="10" Y="6"/>
+        <UsageCount Value="130"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitmain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="8" Y="71"/>
+        <UsageCount Value="130"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../Units/gemutil.pas"/>
+        <UnitName Value="GEMUtil"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="64"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/rtl/linux/ostypes.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="318"/>
+        <CursorPos X="12" Y="334"/>
+        <UsageCount Value="59"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../Units/gemsystem.pas"/>
+        <UnitName Value="GEMSystem"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1120" Column="71" TopLine="1102"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1954" TopLine="1929"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1951" Column="24" TopLine="1929"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1952" Column="20" TopLine="1929"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1157" Column="10" TopLine="1109"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1946" Column="10" TopLine="1928"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1951" TopLine="1928"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1952" TopLine="1928"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1941" Column="72" TopLine="1928"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1946" Column="25" TopLine="1928"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="208" Column="21" TopLine="190"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="187" Column="23" TopLine="167"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1725" Column="59" TopLine="1696"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1984" TopLine="1970"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1993" Column="5" TopLine="1925"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1727" Column="17" TopLine="1699"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="2004" Column="15" TopLine="1977"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="1997" Column="17" TopLine="1984"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="209" Column="20" TopLine="192"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="2010" TopLine="1987"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="68" Column="39" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="211" Column="17" TopLine="193"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="2017" Column="10" TopLine="2015"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="210" Column="14" TopLine="193"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="67" Column="70" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="210" Column="14" TopLine="193"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="9" Column="22"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+        <Caret Line="2254" Column="10" TopLine="2219"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="9" Column="22"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="71" Column="8"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode="default">
+        <Mode Name="default">
+          <local>
+            <LaunchingApplication Use="True" PathPlusParams="/usr/bin/tilix -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
+          </local>
+        </Mode>
+      </Modes>
+    </RunParams>
+    <HistoryLists>
+      <List Name="LaunchingApplication" Type="File" Count="3">
+        <Item1 Value="/usr/bin/tilix -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
+        <Item2 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
+        <Item3 Value="/usr/bin/xterm -T &apos;Lazarus Run Output&apos; -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </List>
+    </HistoryLists>
+  </ProjectSession>
+</CONFIG>

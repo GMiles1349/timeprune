@@ -8,23 +8,24 @@
         <Filename Value="timeprune.lpr"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="10" Y="6"/>
-        <UsageCount Value="130"/>
+        <UsageCount Value="131"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitmain.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="8" Y="71"/>
-        <UsageCount Value="130"/>
+        <TopLine Value="188"/>
+        <CursorPos X="36" Y="198"/>
+        <UsageCount Value="131"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../Units/gemutil.pas"/>
         <UnitName Value="GEMUtil"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -42,90 +43,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1120" Column="71" TopLine="1102"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1954" TopLine="1929"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1951" Column="24" TopLine="1929"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1952" Column="20" TopLine="1929"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1157" Column="10" TopLine="1109"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1946" Column="10" TopLine="1928"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1951" TopLine="1928"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1952" TopLine="1928"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1941" Column="72" TopLine="1928"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1946" Column="25" TopLine="1928"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="208" Column="21" TopLine="190"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="187" Column="23" TopLine="167"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1725" Column="59" TopLine="1696"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1984" TopLine="1970"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1993" Column="5" TopLine="1925"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1727" Column="17" TopLine="1699"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="2004" Column="15" TopLine="1977"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="1997" Column="17" TopLine="1984"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="209" Column="20" TopLine="192"/>
-      </Position>
-      <Position>
-        <Filename Value="../Units/gemutil.pas"/>
-        <Caret Line="2010" TopLine="1987"/>
-      </Position>
-      <Position>
-        <Filename Value="unitmain.pas"/>
-        <Caret Line="68" Column="39" TopLine="52"/>
-      </Position>
       <Position>
         <Filename Value="../Units/gemutil.pas"/>
         <Caret Line="211" Column="17" TopLine="193"/>
@@ -161,6 +78,89 @@
       <Position>
         <Filename Value="unitmain.pas"/>
         <Caret Line="71" Column="8"/>
+      </Position>
+      <Position>
+        <Filename Value="../Units/gemutil.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="29" Column="65" TopLine="23"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="62" Column="52" TopLine="41"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="474" Column="53" TopLine="462"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="71" Column="21" TopLine="50"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="67" Column="29" TopLine="50"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="93" Column="92" TopLine="64"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="9" Column="37"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="99" Column="28" TopLine="82"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="71" Column="14" TopLine="46"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="228" Column="94" TopLine="221"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="155" Column="60" TopLine="139"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="173" Column="60" TopLine="156"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="199" Column="55" TopLine="182"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="211" Column="30" TopLine="195"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="9" Column="63"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="495" Column="53" TopLine="502"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="199" Column="12" TopLine="195"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="191" Column="57" TopLine="181"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="199" Column="35" TopLine="182"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="212" Column="68" TopLine="196"/>
       </Position>
     </JumpHistory>
     <RunParams>

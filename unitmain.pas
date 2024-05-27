@@ -6,7 +6,7 @@ unit unitmain;
 interface
 
 uses
-  gemutil, gemclock, Unix, crt,
+  gemutil, gemclock, gemprogram, Unix, BaseUnix, crt, Process,
   Classes, SysUtils, StrUtils;
 
 type
@@ -32,11 +32,10 @@ type
   function TimeToString(const aSeconds: Double): String;
 
 var
-  EXEPath: String;
-  MaxPath: String;
-  FileOutPath: String;
+  Prog: TGEMProgram;
+  ConfPath: String;
   FileBuff: String;
-  Lines: Array of String;
+  OList: TStringList;
   EntryLine: Array of String;
   Entry: Array of TTimeEntry;
 
@@ -62,19 +61,19 @@ implementation
 procedure Main();
 	begin
 
+    Prog := TGEMProgram.Create(True);
+
     Clock := TGEMClock.Create(100);
 
-    gemWriteLn('----------------------------------------', gem_tred_bold);
-   	gemWriteLn('TimePrune v1.0', gem_tred_bold);
-    gemWriteLn();
+    WriteLn(#27'[1;91m' + '----------------------------------------' + #27'[0m');
+   	WriteLn(#27'[1;91m' + 'TimePrune v1.0' + #27'[0m');
+    WriteLn();
 
-    if gemRequestSudo('sudo priveleges needed to access timeshift snapshots...') <> 0 then begin
+    if fpGetEUID <> 0 then begin
       ErrorHalt('could not obtain sudo priveleges!');
     end;
 
-    EXEPath := ExtractFilePath(ParamStr(0));
-    FileOutPath := EXEPath + 'timeprune.in';
-    MaxPath := EXEPath + 'timeprune.conf';
+    ConfPath := '/home/' + Prog.UserName + '/.config/timeprune/';
 
     GetMaxes();
     GetParams();
@@ -82,21 +81,21 @@ procedure Main();
     DecodeDate(Date, CurYear, CurMonth, CurDay);
   	GetData();
 
-    gemWrite('Max Days to keep snapshots: ');
+    Write('Max Days to keep snapshots: ');
     if MaxDays = 0 then begin
-    	gemWriteLn('FOREVER', gem_twhite_bold);
+    	WriteLn(#27'[1;97m' + 'FOREVER' + #27'[0m');
     end else begin
-    	gemWriteLn(MaxDays.ToString(), gem_twhite_bold);
+    	WriteLn(#27'[1;97m' + MaxDays.ToString());
     end;
 
-    gemWrite('Max snapshots to keep: ');  gemWriteLn(MaxKeep.ToString(), gem_twhite_bold);
-    gemWrite('Current number of snapshots: '); gemWriteLn(Length(Entry).ToString(), gem_twhite_bold);
-    gemWriteLn();
+    Write(#27'[1;97;m' + 'Max snapshots to keep: ' + #27'[0m');  WriteLn(MaxKeep.ToString());
+    Write(#27'[1;97;m' + 'Current number of snapshots: ' + #27'[0m'); WriteLn(Length(Entry).ToString());
+    WriteLn();
 
     TrimExcess();
     DeleteOld();
 
-    gemWriteLn('All Done!', gem_twhite_bold);
+    WriteLn(#27'[1;97;m' + 'All Done!' + #27'[0m');
   end;
 
 
@@ -135,7 +134,7 @@ OutFile: TextFile;
       if Args[0] = 'auto-delete' then begin
         if Args[1] = 'true' then begin
           AutoDelete := true;
-    			gemWriteLn('Set auto-delete');
+    			WriteLn('Set auto-delete');
         end;
       end;
 
@@ -143,7 +142,7 @@ OutFile: TextFile;
       if Args[0] = 'list' then begin
         if Args[1] = 'true' then begin
           ListSnaps := true;
-    			gemWriteLn('Set list');
+    			WriteLn('Set list');
         end;
       end;
 
@@ -153,12 +152,12 @@ OutFile: TextFile;
           Num := Args[1].ToInteger();
           if Num <> MaxDays then begin
             MaxDays := Num;
-            AssignFile(OutFile, MaxPath);
+            AssignFile(OutFile, ConfPath + 'timeprune.conf');
             ReWrite(OutFile);
             WriteLn(OutFile,'Max Days=' + Num.ToString());
             WriteLn(OutFile,'Max Keep=' + MaxKeep.ToString());
             CloseFile(OutFile);
-            gemWriteLn('Set max-days ' + Num.ToString());
+            WriteLn('Set max-days ' + Num.ToString());
           end;
         except
         	ErrorHalt('max-days must be a positive integer value!');
@@ -171,12 +170,12 @@ OutFile: TextFile;
           Num := Args[1].ToInteger();
           if Num <> MaxKeep then begin
             MaxKeep := Num;
-            AssignFile(OutFile, MaxPath);
+            AssignFile(OutFile, ConfPath + 'timeprune.conf');
             ReWrite(OutFile);
             WriteLn(OutFile,'Max Days=' + MaxDays.ToString());
             WriteLn(OutFile,'Max Keep=' + MaxKeep.ToString());
             CloseFile(OutFile);
-            gemWriteLn('Set max-keep ' + Num.ToString());
+            WriteLn('Set max-keep ' + Num.ToString());
           end;
         except
         	ErrorHalt('max-keep must be a positive integer value!');
@@ -194,29 +193,29 @@ var
 OutFile: TextFile;
 DL: Array of String;
 Data: Array of String;
-
 	procedure MakeMaxes();
     begin
-    	AssignFile(OutFile, MaxPath);
+      MkDir(RawByteString(ConfPath));
+    	AssignFile(OutFile, ConfPath + 'timeprune.conf');
       ReWrite(OutFile);
       WriteLn(OutFile, 'Max Days=30');
-      WriteLn(OutFile, 'Max Keep=100');
+      WriteLn(OutFile, 'Max Keep=30');
       CloseFile(OutFile);
 
       MaxDays := 30;
-      MaxKeep := 100;
+      MaxKeep := 30;
     end;
 
 	begin
 
-    if gemFileExists(MaxPath) = False then begin
-      WriteLn('!Could not find timeprune.conf! Creating with default values at ' + MaxPath);
+    if (gemFileExists(ConfPath) = False) or (gemFileExists(ConfPath + 'timeprune.conf') = False) then begin
+      WriteLn('!Could not find timeprune.conf! Creating with default values at ' + ConfPath);
     	MakeMaxes();
       Exit();
     end;
 
     try
-      gemReadFile(MaxPath, FileBuff);
+      gemReadFile(ConfPath + 'timeprune.conf', FileBuff);
       DL := SplitString(FileBuff, sLineBreak);
 
       Data := SplitString(DL[0], '=');
@@ -226,7 +225,7 @@ Data: Array of String;
       MaxKeep := Data[1].ToInteger();
 
     except
-      WriteLn('!Error parsing timeprune.conf! Overwriting with default values at ' + MaxPath);
+      WriteLn('!Error parsing timeprune.conf! Overwriting with default values at ' + ConfPath);
       MakeMaxes();
     end;
 
@@ -236,21 +235,28 @@ procedure GetData();
 var
 I,R: Integer;
 Start: Boolean;
+Proc: TProcess;
 	begin
 
-		fpSystem('touch ' + FileOutPath);
-    fpSystem('sudo timeshift --list > ' + FileOutPath);
+    OList := TStringList.Create();
 
-    gemReadFile(FileOutPath, FileBuff);
-    Lines := SplitString(Filebuff, sLineBreak);
+    Proc := TProcess.Create(nil);
+    Proc.Options := Proc.Options + [poUsePipes, poWaitOnExit];
+    Proc.Executable := 'timeshift';
+    Proc.Parameters.Add('--list');
+    Proc.Execute();
+
+    OList.LoadFromStream(Proc.Output);
+
+    Proc.Free();
 
     Start := False;
     R := 0;
-    for I := 0 to High(Lines) do begin
+    for I := 0 to OList.Count - 1 do begin
 
       if Start = False then begin
-        if Length(Lines[I]) > 0 then begin
-          if Lines[I][1] = '-' then begin
+        if Length(OList[I]) > 0 then begin
+          if OList[I][1] = '-' then begin
             Start := True;
             Continue;
           end;
@@ -258,9 +264,9 @@ Start: Boolean;
       end;
 
       if Start = True then begin
-        if Length(Lines[I]) = 0 then Continue;
+        if Length(OList[I]) = 0 then Continue;
         SetLength(EntryLine, R + 1);
-      	EntryLine[R] := Lines[I];
+      	EntryLine[R] := OList[I];
         Inc(R);
       end;
 
@@ -272,23 +278,23 @@ Start: Boolean;
     if ListSnaps then begin
       R := WhereY();
       GotoXY(1, R);
-      gemWriteLn('[LISTING SNAPSHOTS]');
+      WriteLn('[LISTING SNAPSHOTS]');
 
       for I := 0 to High(Entry) do begin
 
-        gemWrite(I.ToString + ': ' + Entry[I].Date.Year.ToString() + '-' +
+        Write(I.ToString + ': ' + Entry[I].Date.Year.ToString() + '-' +
         	StrPadLeft(Entry[I].Date.Month.ToString(), '0', 2) + '-' +
           StrPadLeft(Entry[I].Date.Day.ToString(), '0', 2));
 
         if Entry[I].TotalDays > MaxDays then begin
-          gemWrite(' - OLD' + sLineBreak);
+          Write(' - OLD' + sLineBreak);
         end else begin
-          gemWriteLn();
+          WriteLn();
         end;
 
       end;
 
-			gemWriteLn();
+			WriteLn();
     end;
 
   end;
@@ -357,23 +363,23 @@ X,Y: Integer;
 Per: Double;
 	begin
 
-    gemWrite('Number of snapshots: ');
+    Write('Number of snapshots: ');
 
   	if (Length(Entry) <= MaxKeep) and (MaxKeep <> 0) then begin
-      gemWriteLn('Good', gem_twhite_bold);
+      WriteLn(#27'[1;97;m' + 'Good' + #27'[0m');
     	Exit;
     end else begin
-      gemWriteLn('Excessive!', gem_tred_bold);
+      WriteLn(#27'[1;97;m' + 'Excessive!' + #27'[0m');
     end;
 
     if not AutoDelete then begin
       repeat
-        gemWrite('Delete excessive snapshots [y/n]?: ', gem_twhite_bold); ReadLn(InString);
+        Write(#27'[1;97;m' + 'Delete excessive snapshots [y/n]?: ' + #27'[0m'); ReadLn(InString);
         if InString = '' then InString := ' ';
       until (InString[1] = 'y') or (InString[1] = 'n');
 
       if InString[1] = 'n' then begin
-      	gemWriteLn();
+      	WriteLn();
       	Exit();
     	end;
     end;
@@ -382,15 +388,15 @@ Per: Double;
     Deleted := 0;
     Old := Length(Entry) - MaxKeep;
 
-    gemWriteLn();
-    gemWriteLn('Deleting ' + Old.ToString() + ' old snapshots...', gem_tred_bold);
+    WriteLn();
+    WriteLn(#27'[1;97;m' + 'Deleting ' + Old.ToString() + ' old snapshots...' + #27'[0m');
    	while Length(Entry) >  MaxKeep do begin
       StartTime := Clock.GetTime();
 
       X := WhereX();
-      gemWrite('Number Deleted: '); gemWriteLn(Deleted.ToString(), gem_twhite_bold);
-      gemWrite('Deleting snapshot '); gemWriteLn(Entry[0].SnapName, gem_twhite_bold);
-      fpSystem('sudo timeshift --delete --snapshot ''' + Entry[0].SnapName + ''' >> /dev/null');
+      Write(#27'[1;91;m' + 'Number Deleted: ' + #27'[0m'); WriteLn(Deleted.ToString());
+      Write(#27'[1;91;m' + 'Deleting snapshot ' + #27'[0m'); WriteLn(Entry[0].SnapName);
+      fpSystem('sudo timeshift --delete --snapshot ''' + Entry[0].SnapName + ''' >> /dev/null' + #27'[0m');
       Delete(Entry, 0, 1);
       if Length(Entry) > 100 then begin
         Y := WhereY();
@@ -405,16 +411,16 @@ Per: Double;
 
       EstimatedTime := TotalTime * (1/Per);
 
-      gemWriteLn('Time to delete: ' + TimeToString(DelTime));
-      gemWriteLn('Elapsed Time: ' + TimeToString(TotalTime));
-      gemWriteLn('Estimated Completion Time: ' + TimeToString(EstimatedTime));
-      gemWriteLn();
+      WriteLn('Time to delete: ' + TimeToString(DelTime));
+      WriteLn('Elapsed Time: ' + TimeToString(TotalTime));
+      WriteLn('Estimated Completion Time: ' + TimeToString(EstimatedTime));
+      WriteLn();
 
 
 
     end;
 
-    gemWriteLn();
+    WriteLn();
   end;
 
 
@@ -438,20 +444,20 @@ InString: String;
     end;
 
     if Old = 0 then begin
-      gemWriteLn('No snapshots older than ' + MaxDays.ToString() + ' days!');
-      gemWriteLn();
+      WriteLn('No snapshots older than ' + MaxDays.ToString() + ' days!');
+      WriteLn();
       Exit();
     end;
 
-		gemWriteLn(Old.ToString() + ' snapshots older than ' + MaxDays.ToString());
+		WriteLn(Old.ToString() + ' snapshots older than ' + MaxDays.ToString());
 
     if not AutoDelete then begin
       repeat
-        gemWrite('Delete old snapshots [y/n]?: ', gem_twhite_bold); ReadLn(InString);
+        Write(#27'[1;97;m' + 'Delete old snapshots [y/n]?: ' + #27'[0m'); ReadLn(InString);
       until (InString[1] = 'y') or (InString[1] = 'n');
 
       if InString[1] = 'n' then begin
-      	gemWriteLn();
+      	WriteLn();
       	Exit();
     	end;
     end;
@@ -461,7 +467,7 @@ InString: String;
     I := 0;
     while I <= High(Entry) do begin
       if Entry[I].TotalDays >= MaxDays then begin
-      	gemWriteLn('Deleting snapshot ' + Entry[I].SnapName + '... ' + Entry[I].TotalDays.ToString() + ' days old');
+      	WriteLn('Deleting snapshot ' + Entry[I].SnapName + '... ' + Entry[I].TotalDays.ToString() + ' days old');
         fpSystem('sudo timeshift --delete --snapshot ' + Entry[I].SnapName + ' | /dev/null');
         Delete(Entry,I,1);
         Inc(Deleted);
@@ -472,21 +478,21 @@ InString: String;
     end;
 
     if Deleted = 0 then begin
-      gemWriteLn('No old snapshots to delete!', gem_twhite_bold);
+      WriteLn(#27'[1;97;m' + 'No old snapshots to delete!' + #27'[0m');
     end else begin
-      gemWriteLn('Deleted ' + Deleted.ToString() + ' snapshots', gem_twhite_bold);
+      WriteLn(#27'[1;97;m' + 'Deleted ' + Deleted.ToString() + ' snapshots' + #27'[0m');
     end;
 
-    gemWriteLn();
+    WriteLn();
 
   end;
 
 
 procedure ErrorHalt(const aErrStr: String);
 	begin
-    gemWriteLn();
-    gemWriteLn('ERROR: ', gem_tred_bold);
-    gemWriteLn('  ' + aErrStr, gem_twhite_bold);
+    WriteLn();
+    WriteLn(#27'[1;91;m' + 'ERROR: ' + #27'[0m');
+    WriteLn(#27'[1;97;m' + '  ' + aErrStr + #27'[0m');
     Halt();
   end;
 

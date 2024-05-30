@@ -1,4 +1,4 @@
-# gembackupdate
+# timeprune
 
 timeprune is a Linux utility for pruning (deleting) old and excessive timeshift snapshots. The user can use the default values hardcoded into the source (which will then be written to the timeprune.conf file upon first execution), or change the maximum number or age of snapshots to keep through commandline options.
 

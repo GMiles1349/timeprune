@@ -16,8 +16,8 @@
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="188"/>
-        <CursorPos X="36" Y="198"/>
+        <TopLine Value="117"/>
+        <CursorPos X="57" Y="371"/>
         <UsageCount Value="131"/>
         <Loaded Value="True"/>
       </Unit>
@@ -42,7 +42,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="../Units/gemutil.pas"/>
         <Caret Line="211" Column="17" TopLine="193"/>
@@ -141,10 +141,6 @@
       <Position>
         <Filename Value="unitmain.pas"/>
         <Caret Line="9" Column="63"/>
-      </Position>
-      <Position>
-        <Filename Value="unitmain.pas"/>
-        <Caret Line="495" Column="53" TopLine="502"/>
       </Position>
       <Position>
         <Filename Value="unitmain.pas"/>

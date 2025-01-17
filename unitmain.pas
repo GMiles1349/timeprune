@@ -65,8 +65,8 @@ procedure Main();
 
     Clock := TGEMClock.Create(100);
 
-    WriteLn(#27'[1;91m' + '----------------------------------------' + #27'[0m');
-   	WriteLn(#27'[1;91m' + 'TimePrune v1.0' + #27'[0m');
+    WriteLn(#27'[1;31m' + '----------------------------------------' + #27'[0m');
+   	WriteLn(#27'[1;31m' + 'TimePrune v1.0' + #27'[0m');
     WriteLn();
 
     if fpGetEUID <> 0 then begin
@@ -372,7 +372,7 @@ Per: Double;
       WriteLn(#27'[1;97;m' + 'Excessive!' + #27'[0m');
     end;
 
-    if not AutoDelete then begin
+    if AutoDelete = False then begin
       repeat
         Write(#27'[1;97;m' + 'Delete excessive snapshots [y/n]?: ' + #27'[0m'); ReadLn(InString);
         if InString = '' then InString := ' ';
@@ -451,7 +451,7 @@ InString: String;
 
 		WriteLn(Old.ToString() + ' snapshots older than ' + MaxDays.ToString());
 
-    if not AutoDelete then begin
+    if AutoDelete = False then begin
       repeat
         Write(#27'[1;97;m' + 'Delete old snapshots [y/n]?: ' + #27'[0m'); ReadLn(InString);
       until (InString[1] = 'y') or (InString[1] = 'n');
